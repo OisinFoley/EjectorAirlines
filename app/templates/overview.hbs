@@ -2,10 +2,22 @@
 <br>
 potatoes
 <br><br>
-		{{!-- {{aircraft-list}}  --}}
 
 
-{{!-- {{log model.aircrafts }} --}}
+{{#cp-panel as |p|}}
+  {{#p.toggle}}
+    <p>Click me!</p>
+  {{/p.toggle}}
+
+  {{#p.body}}
+    <div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo repellendus nisi asperiores esse aperiam aliquid nulla ad dolor autem neque, nihil inventore temporibus delectus earum facere corporis, quam ipsum maxime.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus neque magnam, hic quis beatae repellendus harum modi pariatur minus quidem alias! Eius incidunt impedit eaque, est, illo officiis expedita molestiae.</p>
+    </div>
+  {{/p.body}}
+{{/cp-panel}}
+
+<br><br>
 
 <svg  >
   <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="rgb(43, 133, 128)" />  

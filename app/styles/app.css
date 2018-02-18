@@ -17,6 +17,15 @@ svg {
     width:6vw;
 } 
 
+.accordionHeader {
+  color: yellow;
+}
+
+.cp-Panel {
+  border: 1px solid #ddd;
+  color:yellow;
+}
+
 .aircraftsContainer {
     background: rgb(43, 133, 128);
 }

@@ -1,6 +1,6 @@
 # Ejector-airlines-admin-app
 
-README 0.2
+README 0.3
 
 # Synopsis
 
@@ -26,6 +26,10 @@ README 0.2
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### Commits Overview
+
+#### 0.3
+* Installed liquid-fire for animations.
+* Implemented collapsible-panel.
 
 #### 0.2
 * Changed background colour.

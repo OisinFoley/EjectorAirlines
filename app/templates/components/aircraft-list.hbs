@@ -1,9 +1,23 @@
-{{#each aircraftList as |aircraft|}}
-    <div class="position">
-        {{#each-in aircraft as |key value|}}
-            <br>
-            `{{key}}`:`{{value}}`
-        {{/each-in}}
-        <br><br><br>    
-    </div>        
-{{/each}} 
+<div>
+    {{#each aircraftList as |aircraft|}}
+        <div class="position">
+            {{#cp-panel as |p|}}
+                {{#p.toggle}}
+                    <p class="accordionHeader">{{aircraft.Model}} </p>
+                    {{!-- <p>ssssss</p> --}}
+                {{/p.toggle}}
+
+                {{#p.body}}
+                    {{#each-in aircraft as |key value|}}
+                    <br>
+                    `{{key}}`:`{{value}}`
+                    {{/each-in}}
+                    {{!-- clickcontent --}}
+                {{/p.body}}
+            {{/cp-panel}}            
+            <br><br><br>
+        </div>        
+    {{/each}} 
+</div>
+
+
