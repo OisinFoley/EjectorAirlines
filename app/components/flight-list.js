@@ -7,7 +7,7 @@ export default Component.extend({
 		this._super(...arguments);
 		this.send('flightList');
 	},
-	classNames: ['flightsContainer', 'aviationData'],
+	classNames: ['flightsContainer', 'aviationData', 'customScrollbar'],
 	actions:{
 		flightList: function(){			
 			let data = $.getJSON(`assets/Flight.json`);
@@ -17,7 +17,7 @@ export default Component.extend({
 			   	json.forEach(function(item){
 			       // records.push( Production.create(item) );
 			    	records.push(item);
-				    console.log("the records are : : " + JSON.stringify(records));
+				    // console.log("the records are : : " + JSON.stringify(records));
 			    });
 
 			    this.set('flightList', records);

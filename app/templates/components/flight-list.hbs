@@ -1,41 +1,61 @@
+{{!-- {{#each flightList as |flight|}}
+        <div class="position">
+            {{#each-in flight as |key value|}}
+                <br>
+                `{{key}}`:`{{value}}`
+            {{/each-in}}
+            <br><br><br>    
+        </div>        
+{{/each}}  --}}
+
 {{#each flightList as |flight|}}
 
-{{flight.ID}} <br>
--- <br><br>
-{{flight.Place_IDDeparture.ID}} <br>
-{{flight.Place_IDDeparture.Place}} <br>
-{{flight.Place_IDDeparture.PlaceName}} <br>
-{{flight.Place_IDDeparture.IATACode}} <br>
-{{flight.Place_IDDeparture.ICAOCode}} <br>
-{{flight.Place_IDDeparture.Latitude}} <br>
-{{flight.Place_IDDeparture.Longitude}} <br>
-{{flight.Place_IDDeparture.uRALBase_ID}} <br>
-{{flight.Place_IDDeparture.PlaceName}} <br>
--- <br><br>
-{{flight.Customer_ID.ID}} <br>
-{{flight.Customer_ID.Description}} <br>
-{{flight.Customer_ID.Show}} <br>
--- <br><br>
-{{flight.Aircraft_ID.ID}} <br>
-{{flight.Aircraft_ID.Reg}} <br>
--- <br><br>
-{{flight.FlightStatus_ID.ID}} <br>
-{{flight.FlightStatus_ID.Status}} <br>
-{{flight.FlightStatus_ID.Colour}} <br>
--- <br><br>
-{{flight.FlightType_ID.ID}} <br>
-{{flight.FlightType_ID.Description}} <br>
--- <br><br>
-{{flight.FlightNumber}} <br>
-{{flight.FlightDate}} <br>
--- <br><br>
-{{flight.ScheduleDepartureTime}} <br>
-{{flight.ScheduleArrivalTime}} <br>
-{{flight.DepartureTime}} <br>
-{{flight.ArrivalTime}} <br>
-{{flight.TakeOffTime}} <br>
-{{flight.LandingTime}} <br>
-
-
+<div class="position">
+    {{flight.ID}} <br>
+    <br><br>
+    {{flight.Place_IDDeparture.ID}} <br>
+    {{flight.Place_IDDeparture.Place}} <br>
+    {{flight.Place_IDDeparture.PlaceName}} <br>
+    {{flight.Place_IDDeparture.IATACode}} <br>
+    {{flight.Place_IDDeparture.ICAOCode}} <br>
+    {{flight.Place_IDDeparture.Latitude}} <br>
+    {{flight.Place_IDDeparture.Longitude}} <br>
+    {{flight.Place_IDDeparture.uRALBase_ID}} <br>
+    {{flight.Place_IDDeparture.PlaceName}} <br>
+    <br><br>
+    {{flight.Customer_ID.ID}} <br>
+    {{flight.Customer_ID.Description}} <br>
+    {{flight.Customer_ID.Show}} <br>
+    <br><br>
+    {{flight.Aircraft_ID.ID}} <br>
+    {{flight.Aircraft_ID.Reg}} <br>
+    <br><br>
+    {{flight.FlightStatus_ID.ID}} <br>
+    {{flight.FlightStatus_ID.Status}} <br>
+    {{flight.FlightStatus_ID.Colour}} <br>
+    <br><br>
+    {{flight.FlightType_ID.ID}} <br>
+    {{flight.FlightType_ID.Description}} <br>
+    <br><br>
+    {{flight.FlightNumber}} <br>
+    {{flight.FlightDate}} <br>
+    <br><br>
+    {{flight.ScheduleDepartureTime}} <br>
+    {{flight.ScheduleArrivalTime}} <br>
+    {{flight.DepartureTime}} <br>
+    {{flight.ArrivalTime}} <br>
+    {{flight.TakeOffTime}} <br>
+    {{flight.LandingTime}} <br>
+</div>
 
 {{/each}}
+
+{{!-- {{#each-in flightList as |flight positions|}}
+    <li>{{flight}}
+    <ol>
+        {{#each positions as |product|}}
+        <li>{{product}}</li>
+        {{/each}}
+    </ol>
+    </li>
+{{/each-in}} --}}

@@ -1,19 +1,11 @@
 <div>
-    {{#each aircraftPosition as |position|}}
-
-    {{position.ID}}
-    {{position.Reg}}
-    {{position.tRegJourney_ID}}
-    {{position.AircraftPositionSource_ID}}
-    {{position.AircraftPositionType}}
-    {{position.Timestamp}}
-    {{position.Latitude}}
-    {{position.Longitude}}
-    {{position.Altitude}}
-    {{position.Speed}}
-    {{position.Track}}
-    {{position.ID}}
-    {{position.ID}}
-
-    {{/each}}
+    {{#each aircraftPosition as |aircraft|}}
+        <div class="position">
+            {{#each-in aircraft as |key value|}}
+                <br>
+                `{{key}}`:`{{value}}`
+            {{/each-in}}
+            <br><br><br>    
+        </div>        
+    {{/each}} 
 </div>

@@ -1,8 +1,9 @@
 {{#each aircraftList as |aircraft|}}
-
-{{aircraft.ID}}
-{{aircraft.Reg}} <br>
-{{aircraft.Model}} <br>
-
-{{/each}}
-s
+    <div class="position">
+        {{#each-in aircraft as |key value|}}
+            <br>
+            `{{key}}`:`{{value}}`
+        {{/each-in}}
+        <br><br><br>    
+    </div>        
+{{/each}} 

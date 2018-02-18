@@ -1,6 +1,6 @@
 # Ejector-airlines-admin-app
 
-README 0.1
+README 0.2
 
 # Synopsis
 
@@ -27,6 +27,12 @@ README 0.1
 
 ### Commits Overview
 
+#### 0.2
+* Changed background colour.
+* Changed key iteration
+* Tidied display of each iteration's key:value
+
+#### 0.1
 * Initial setup.
 * Importing Bootstrap.
 * Listing contents in separate components.

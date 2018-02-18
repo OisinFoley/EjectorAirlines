@@ -1,11 +1,14 @@
-import { Bootstrap } from 'bootstrap';
+/* import { Bootstrap } from 'bootstrap'; */
+@import 'bootstrap';
 
-.ham{
-    width: 100%;
+html {
+    height: 100%;
 }
 
 body {
-    background: rgb(158, 192, 231);
+    /* background: rgb(158, 192, 231); */
+    background: linear-gradient(skyblue, aqua, aqua, white);
+    
 }
 
 /* will need to do a media-query for smaller devices later */
@@ -26,20 +29,111 @@ svg {
     background: yellow;
 }
 .aviationData {  
-    height: 25vh;
+    height: 45vh;
     overflow-y: scroll;
     /* background: rgb(157, 115, 44); */
 }
 
-.test{
-    color:orange;
-    background: blue;
+.position:nth-child(odd) {
+    background: red;
+    margin:50px 0px;
 }
 
-.bbb{
-    background: orange;
+
+.projects-list{
+
+  /* height:70vh; */
+  overflow-y: scroll;
+  padding:0.7vw;
 }
 
-.ccc{
-    background: green;
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin-bottom:0.7vh;
+  margin-top:1.7vh;
+
+  background: lavender;
+}
+
+
+/* .aircraftsContainer, .aircraftsPositionsContainer, .flightsContainer::-webkit-scrollbar-thumb { */
+.customScrollbar::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #E9ECF5;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+
+/* .aircraftsContainer, .aircraftsPositionsContainer, .flightsContainer::-webkit-scrollbar { */
+.customScrollbar::-webkit-scrollbar {    
+  width: 12px;  
+}
+
+/*seems to control rendering of inner scrollbar*/
+/* .aircraftsContainer, aircraftsPositionsContainer, .flightsContainer::-webkit-scrollbar-track { */
+.customScrollbar::-webkit-scrollbar-track {        
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin-bottom:0.7vh;
+  margin-top:1.7vh;
+
+  background: lavender;
+}
+
+
+/* body > div > div {
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 95%;
+  margin: 3vh auto;
+} */
+
+
+h3 {
+  font-size: 6vh;
+}
+
+a:hover {
+  color: gray;
+}
+
+
+
+.sliding-middle-out:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0px;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease;
+}
+
+.sliding-middle-out {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.sliding-middle-out span {
+  color:blue;
+  text-align: center;
+}
+
+.sliding-middle-out:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0px;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease;
+}
+.sliding-middle-out:hover:after {
+  width: 100%;
+  background: rgb(165, 39, 197);
 }

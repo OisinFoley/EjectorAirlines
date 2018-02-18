@@ -7,7 +7,7 @@ export default Component.extend({
 		this._super(...arguments);
 		this.send('getAllAircraftPositions');
 	},
-	classNames: ['aircraftsPositionsContainer'],
+	classNames: ['aircraftsPositionsContainer', 'aviationData', 'customScrollbar'],
 	actions:{
 		getAllAircraftPositions() {
 
@@ -27,3 +27,6 @@ export default Component.extend({
 		}
 	}
 });
+
+//for each key, if value is !typeof(object), then push to an object(`${key}:${value}`)
+//if value is typeof object, then go to an inner loop and create another 
