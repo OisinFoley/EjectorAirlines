@@ -1,0 +1,394 @@
+[
+    {
+        "ID": "96683",
+        "Place_IDDeparture": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Place_IDArrival": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Customer_ID": {
+            "ID": "52679",
+            "Description": "Ithaca Energy",
+            "Show": "1"
+        },
+        "Aircraft_ID": {
+            "ID": "35",
+            "Reg": "OO-NSF"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "1",
+            "Description": "Revenue / Offshore"
+        },
+        "FlightNumber": "504B",
+        "FlightDate": "2017-09-21T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-21T13:30:00.000Z",
+        "ScheduleArrivalTime": "2017-09-21T15:50:00.000Z",
+        "DepartureTime": "2017-09-21T14:21:00.000Z",
+        "ArrivalTime": "2017-09-21T17:04:00.000Z",
+        "TakeOffTime": "2017-09-21T14:36:00.000Z",
+        "LandingTime": "2017-09-21T17:02:00.000Z"
+    },
+    {
+        "ID": "96565",
+        "Place_IDDeparture": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Place_IDArrival": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Customer_ID": {
+            "ID": "52679",
+            "Description": "Ithaca Energy",
+            "Show": "1"
+        },
+        "Aircraft_ID": {
+            "ID": "35",
+            "Reg": "OO-NSF"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "1",
+            "Description": "Revenue / Offshore"
+        },
+        "FlightNumber": "504A",
+        "FlightDate": "2017-09-21T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-21T10:30:00.000Z",
+        "ScheduleArrivalTime": "2017-09-21T12:50:00.000Z",
+        "DepartureTime": "2017-09-21T10:46:00.000Z",
+        "ArrivalTime": "2017-09-21T13:32:00.000Z",
+        "TakeOffTime": "2017-09-21T10:54:00.000Z",
+        "LandingTime": "2017-09-21T13:29:00.000Z"
+    },
+    {
+        "ID": "96592",
+        "Place_IDDeparture": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Place_IDArrival": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Customer_ID": {
+            "ID": "34742",
+            "Description": "Chevron North Sea Ltd",
+            "Show": "1"
+        },
+        "Aircraft_ID": {
+            "ID": "35",
+            "Reg": "OO-NSF"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "1",
+            "Description": "Revenue / Offshore"
+        },
+        "FlightNumber": "503C",
+        "FlightDate": "2017-09-20T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-20T12:00:00.000Z",
+        "ScheduleArrivalTime": "2017-09-20T14:15:00.000Z",
+        "DepartureTime": "2017-09-20T11:24:00.000Z",
+        "ArrivalTime": "2017-09-20T13:35:00.000Z",
+        "TakeOffTime": "2017-09-20T11:33:00.000Z",
+        "LandingTime": "2017-09-20T13:33:00.000Z"
+    },
+    {
+        "ID": "95066",
+        "Place_IDDeparture": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Place_IDArrival": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Customer_ID": {
+            "ID": "32910",
+            "Description": "Seaway Heavy Lifting B.V.",
+            "Show": "0"
+        },
+        "Aircraft_ID": {
+            "ID": "35",
+            "Reg": "OO-NSF"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "1",
+            "Description": "Revenue / Offshore"
+        },
+        "FlightNumber": "503B",
+        "FlightDate": "2017-09-20T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-20T08:15:00.000Z",
+        "ScheduleArrivalTime": "2017-09-20T09:45:00.000Z",
+        "DepartureTime": "2017-09-20T08:08:00.000Z",
+        "ArrivalTime": "2017-09-20T10:06:00.000Z",
+        "TakeOffTime": "2017-09-20T08:25:00.000Z",
+        "LandingTime": "2017-09-20T10:04:00.000Z"
+    },
+    {
+        "ID": "95065",
+        "Place_IDDeparture": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Place_IDArrival": {
+            "ID": "6721",
+            "Place": "ABZ",
+            "PlaceName": "Aberdeen",
+            "IATACode": "ABZ",
+            "ICAOCode": "EGPD",
+            "Latitude": "57.2046470000",
+            "Longitude": "-2.2004150000",
+            "uRALBase_ID": "42"
+        },
+        "Customer_ID": {
+            "ID": "32910",
+            "Description": "Seaway Heavy Lifting B.V.",
+            "Show": "0"
+        },
+        "Aircraft_ID": {
+            "ID": "35",
+            "Reg": "OO-NSF"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "1",
+            "Description": "Revenue / Offshore"
+        },
+        "FlightNumber": "503A",
+        "FlightDate": "2017-09-20T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-20T06:00:00.000Z",
+        "ScheduleArrivalTime": "2017-09-20T07:30:00.000Z",
+        "DepartureTime": "2017-09-20T05:46:00.000Z",
+        "ArrivalTime": "2017-09-20T07:15:00.000Z",
+        "TakeOffTime": "2017-09-20T05:54:00.000Z",
+        "LandingTime": "2017-09-20T07:13:00.000Z"
+    },
+    {
+        "ID": "96665",
+        "Place_IDDeparture": {
+            "ID": "5656",
+            "Place": "EBJ",
+            "PlaceName": "Esbjerg",
+            "IATACode": "EBJ",
+            "ICAOCode": "EKEB",
+            "Latitude": "55.5255520000",
+            "Longitude": "8.5502430000",
+            "uRALBase_ID": "39"
+        },
+        "Place_IDArrival": {
+            "ID": "5656",
+            "Place": "EBJ",
+            "PlaceName": "Esbjerg",
+            "IATACode": "EBJ",
+            "ICAOCode": "EKEB",
+            "Latitude": "55.5255520000",
+            "Longitude": "8.5502430000",
+            "uRALBase_ID": "39"
+        },
+        "Customer_ID": {
+            "ID": "54362",
+            "Description": "Dong & Hess",
+            "Show": "1"
+        },
+        "Aircraft_ID": {
+            "ID": "64",
+            "Reg": "OY-HNV"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "1",
+            "Description": "Revenue / Offshore"
+        },
+        "FlightNumber": "19304/3",
+        "FlightDate": "2017-09-20T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-20T16:03:00.000Z",
+        "ScheduleArrivalTime": "2017-09-20T18:59:00.000Z",
+        "DepartureTime": "2017-09-20T16:03:00.000Z",
+        "ArrivalTime": "2017-09-20T18:59:00.000Z",
+        "TakeOffTime": "2017-09-20T16:12:00.000Z",
+        "LandingTime": "2017-09-20T18:56:00.000Z"
+    },
+    {
+        "ID": "96640",
+        "Place_IDDeparture": {
+            "ID": "5656",
+            "Place": "EBJ",
+            "PlaceName": "Esbjerg",
+            "IATACode": "EBJ",
+            "ICAOCode": "EKEB",
+            "Latitude": "55.5255520000",
+            "Longitude": "8.5502430000",
+            "uRALBase_ID": "39"
+        },
+        "Place_IDArrival": {
+            "ID": "5656",
+            "Place": "EBJ",
+            "PlaceName": "Esbjerg",
+            "IATACode": "EBJ",
+            "ICAOCode": "EKEB",
+            "Latitude": "55.5255520000",
+            "Longitude": "8.5502430000",
+            "uRALBase_ID": "39"
+        },
+        "Customer_ID": {
+            "ID": "44825",
+            "Description": "Maersk",
+            "Show": "0"
+        },
+        "Aircraft_ID": {
+            "ID": "64",
+            "Reg": "OY-HNV"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "14",
+            "Description": "Other"
+        },
+        "FlightNumber": "19304/2",
+        "FlightDate": "2017-09-20T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-20T08:54:00.000Z",
+        "ScheduleArrivalTime": "2017-09-20T11:10:00.000Z",
+        "DepartureTime": "2017-09-20T08:54:00.000Z",
+        "ArrivalTime": "2017-09-20T11:10:00.000Z",
+        "TakeOffTime": "2017-09-20T09:01:00.000Z",
+        "LandingTime": "2017-09-20T11:07:00.000Z"
+    },
+    {
+        "ID": "96633",
+        "Place_IDDeparture": {
+            "ID": "5656",
+            "Place": "EBJ",
+            "PlaceName": "Esbjerg",
+            "IATACode": "EBJ",
+            "ICAOCode": "EKEB",
+            "Latitude": "55.5255520000",
+            "Longitude": "8.5502430000",
+            "uRALBase_ID": "39"
+        },
+        "Place_IDArrival": {
+            "ID": "5656",
+            "Place": "EBJ",
+            "PlaceName": "Esbjerg",
+            "IATACode": "EBJ",
+            "ICAOCode": "EKEB",
+            "Latitude": "55.5255520000",
+            "Longitude": "8.5502430000",
+            "uRALBase_ID": "39"
+        },
+        "Customer_ID": {
+            "ID": "54362",
+            "Description": "Dong & Hess",
+            "Show": "1"
+        },
+        "Aircraft_ID": {
+            "ID": "64",
+            "Reg": "OY-HNV"
+        },
+        "FlightStatus_ID": {
+            "ID": "13",
+            "Status": "08-Technical Records",
+            "Colour": "-16744256"
+        },
+        "FlightType_ID": {
+            "ID": "1",
+            "Description": "Revenue / Offshore"
+        },
+        "FlightNumber": "19304/1",
+        "FlightDate": "2017-09-20T00:00:00.000Z",
+        "ScheduleDepartureTime": "2017-09-20T05:06:00.000Z",
+        "ScheduleArrivalTime": "2017-09-20T08:05:00.000Z",
+        "DepartureTime": "2017-09-20T05:06:00.000Z",
+        "ArrivalTime": "2017-09-20T08:05:00.000Z",
+        "TakeOffTime": "2017-09-20T05:14:00.000Z",
+        "LandingTime": "2017-09-20T08:01:00.000Z"
+    }
+]

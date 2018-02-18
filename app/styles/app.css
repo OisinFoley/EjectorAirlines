@@ -1,0 +1,45 @@
+import { Bootstrap } from 'bootstrap';
+
+.ham{
+    width: 100%;
+}
+
+body {
+    background: rgb(158, 192, 231);
+}
+
+/* will need to do a media-query for smaller devices later */
+svg {
+    height:12vh;
+    width:6vw;
+} 
+
+.aircraftsContainer {
+    background: rgb(43, 133, 128);
+}
+
+.aircraftsPositionsContainer {
+    background: blue;
+} 
+
+.flightsContainer { 
+    background: yellow;
+}
+.aviationData {  
+    height: 25vh;
+    overflow-y: scroll;
+    /* background: rgb(157, 115, 44); */
+}
+
+.test{
+    color:orange;
+    background: blue;
+}
+
+.bbb{
+    background: orange;
+}
+
+.ccc{
+    background: green;
+}
