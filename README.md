@@ -1,4 +1,4 @@
-# fire-flights-admin-app
+# Ejector-airlines-admin-app
 
 README 0.1
 
