@@ -104,7 +104,12 @@ might be better to use a filter and construct to objects, which are linked based
     ¬ Aircrafts
   </div>
   {{!-- <div class="col-lg-offset-1 "> {{aircraft-list aircraftList=aircraftList filterAircraftPositions=(action 'filterAircraftPositions')}} </div> --}}
-  <div class="col-lg-offset-1 "> {{component dynamicInjectionValue aircraftList=aircraftList filterAircraftPositions=(action 'filterAircraftPositions')}} </div>
+  <div class="col-lg-offset-1 "> 
+    {{component dynamicInjectionValue aircraftList=aircraftList 
+      filterAircraftPositions= (action 'filterAircraftPositions')
+      filterFlightList= (action 'filterFlightList')
+    }} 
+  </div>
   
 </div>
 
@@ -128,7 +133,10 @@ might be better to use a filter and construct to objects, which are linked based
 	  ¬ Flights
   </div>
   <div class=""> 
-    {{flight-list flightList=flightList}}      
+    {{flight-list 
+      flightList=displayedFlightList 
+      filterAircraftPositionsByFlightId= (action 'filterAircraftPositionsByFlightId')
+    }}      
   </div>
 </div>
 <br><br><br><br>

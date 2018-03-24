@@ -9,6 +9,10 @@ export default Component.extend({
 	},
 	classNames: ['flightsContainer', 'aviationData', 'customScrollbar'],
 	actions:{
+		filterAircraftPositionsByFlightId(flight) {
+			this.sendAction('filterAircraftPositionsByFlightId', flight);
+
+		}
 		// flightList: function(){			
 		// 	let data = $.getJSON(`assets/Flight.json`);
 

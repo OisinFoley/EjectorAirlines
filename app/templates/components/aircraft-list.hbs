@@ -8,9 +8,9 @@
     {{#each aircraftList as |aircraft|}}
         <div class="position">
             {{#cp-panel as |p|}}
-                {{#p.toggle click=(action 'filterAircraftPositions' aircraft) }}
+                {{#p.toggle }}
                 {{!-- {{action 'loadFilteredAircraftList'}} --}}
-                    <p class="accordionHeader">{{aircraft.Reg}} </p>
+                    <p class="accordionHeader" {{action "filterAircraftPositions" aircraft}} >{{aircraft.Reg}} </p>
                     {{!-- <p>ssssss</p> --}}
                 {{/p.toggle}}
 

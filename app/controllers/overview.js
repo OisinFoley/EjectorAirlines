@@ -146,18 +146,35 @@ export default Controller.extend({
             });
         },
 
-        filterAircraftPositions(aircraft) {
+        filterAircraftPositions(selectedAircraft) {
 
-            console.log('hi hi hi 33');
-            console.log(`item is ${JSON.stringify(aircraft)}`);
-            // this.sendAction('filterAircraftPositions');
-
+            
             let aircraftPosition = this.get('dummyPositions');
-            aircraftPosition = aircraftPosition.filter(position => position.Reg === aircraft.Reg)
+            aircraftPosition = aircraftPosition.filter(position => position.Reg === selectedAircraft.Reg)
     // let sss = json.filter(aircraft => aircraft.Reg == 'OY-HNV');
 
             this.set(`aircraftPosition`, aircraftPosition);
-		},
+        },
+
+        filterAircraftPositionsByFlightId(selectedFlight) {
+            console.log(`craicnw=ow`);
+            console.log(selectedFlight);
+
+            /**
+             * it seems to filter the aircraftpositions by 'flight', that we must grab the aircraftid associated with the flight, and compare it with the
+             * aircraftid in each aircraftposition record, AND also check the departure and arrival time of the flight and ensure that the aircraftposition
+             * timestamp falls within that timerange, as without doing this timerange check, we may be including positions for other flights that the
+             * aircraft took part in  . . 
+             */
+            
+        },
+        
+        filterFlightList(selectedAircraft) {
+                console.log('ghj')
+                // let flightList = this.get('flightList');
+            let filteredFlightList = this.get('fullFlightList').filter(flight => flight.Aircraft_ID.Reg === selectedAircraft.Reg)
+            this.set('displayedFlightList', filteredFlightList);
+        },
 
         loadFilteredAircraftPositions () {
 
@@ -226,7 +243,8 @@ export default Controller.extend({
         },
         loadFlights() {                
             this.get('flightService').getFlights().then((json) => {
-                this.set(`flightList`, json);
+                this.set(`fullFlightList`, json);
+                this.set(`displayedFlightList`, json);
             });              
         }
 

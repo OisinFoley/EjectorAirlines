@@ -6,7 +6,8 @@
     <div class="position">
         {{#cp-panel as |p|}}
             {{#p.toggle}}
-                <p class="accordionHeader">{{flight.ID}} </p>                
+                <p class="accordionHeader" {{action "filterAircraftPositionsByFlightId" flight}}>{{flight.ID}} </p>   
+                
             {{/p.toggle}}
 
             {{#p.body}}

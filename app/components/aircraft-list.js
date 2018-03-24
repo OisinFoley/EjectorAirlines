@@ -13,6 +13,7 @@ export default Component.extend({
 		filterAircraftPositions(aircraft) {
 			// console.log(`item is ${JSON.stringify(aircraft)}`);
 			this.sendAction('filterAircraftPositions', aircraft);
+			this.sendAction('filterFlightList', aircraft);
 		}
 		// aircraftList: function(){			
 		// 	let data = $.getJSON(`assets/Aircraft.json`);
