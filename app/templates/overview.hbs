@@ -3,56 +3,133 @@
 potatoes
 <br><br>
 
+<h4>
+  1. Can maybe have <b> 3 boxes </b> representing each entity <br>
+  2. <b> First box lists the aircrafts </b>, if you <b> click an aircraft </b>, then it populates the 2nd box, containing the list of flights <br>
+  3. From the <b> list of flights, if a flight is clicked </b>, then we see all the aircraft positions for that flight.<br>
+  4. There can then be <b> a button which switches the flights box/container </b> to become the first box,this may reduce the number of boxes to 2, but then they can see all the flights at once and reverse-navigate.<br>
+  5. This is <b> dependent on the loading of aircraft positions for an individual flight yielding better performance </b>.
+  6. When an item is clicked, <b> check that it hasn't been loaded before </b>. <br><br>
 
-{{#cp-panel as |p|}}
-  {{#p.toggle}}
-    <p>Click me!</p>
-  {{/p.toggle}}
+  see aircraft.js service for latest on what to do. . .
+</h4>
 
-  {{#p.body}}
-    <div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo repellendus nisi asperiores esse aperiam aliquid nulla ad dolor autem neque, nihil inventore temporibus delectus earum facere corporis, quam ipsum maxime.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus neque magnam, hic quis beatae repellendus harum modi pariatur minus quidem alias! Eius incidunt impedit eaque, est, illo officiis expedita molestiae.</p>
-    </div>
-  {{/p.body}}
-{{/cp-panel}}
+
+{{!-- 
+    <br><br><br>
+
+    new approach is to destructure each file's data, so remove "tRegJourney_ID": "0" &&,
+ "AircraftPositionSource_ID": "1" from aircraftpositions and id from Aircraftsthen create menaingful relationships in the table as described here:
+
+ Big table
+
+Both aircraft REGs representing the unique-identifier of the aircrafts, they will be 2 big rows in column zero for each of the 2 aircraft REGs.
+
+Then we will have various props from aircraft-position, as other table columns(meaning more frequent rows) but not         
+"tRegJourney_ID": "0" &&,
+ "AircraftPositionSource_ID": "1", as they’re not meaningful.
+
+Try to use Latitude & Longitude in flight.json to determine destination
+
+then still do the d3 and it's neat and we're happy
+
+sample( 2 tall rows from the aircraft , many columns and rows for aircrafts positions, and some for flights )
 
 <br><br>
-
-<svg  >
-  <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="rgb(43, 133, 128)" />  
-</svg> 
-<div class="sliding-middle-out">
-	¬ Aircrafts
-</div>
+clicking on certain values from the will open a modal isolating those pieces of info and showing the relationships between the properties
+</h2> --}}
 
 
-<svg >
-  <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="blue" />  
-</svg> 
-<div class="sliding-middle-out">
-	¬ Aircraft Positions
-</div>
+{{fa-icon "spinner" spin=true size="lg"}}
+{{fa-icon "spinner" spin=true size=5}}
+<br><br>
 
-<svg >
-  <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="yellow" />  
-</svg> 
-<div class="sliding-middle-out">
-	¬ Flights
-</div>
+{{#unless loading}}
+  hi FALSE NOW
+{{/unless}}
+{{#if loading}}
+  if is TRUE NOW
+{{/if}}
 
 <div>
-	<div>
-		<div class="col-lg-offset-1 col-lg-3"> {{aircraft-list}} </div>
-		<div class="col-lg-offset-1 col-lg-3"> 
-			{{aircraft-positions}} 			
-		</div>
-		<div class="col-lg-offset-1 col-lg-3"> {{flight-list}} </div>
-		
-	</div>
+  {{#each aircraftRegFilters as |filteredReg|}}
+  <br><br>
+    {{#each-in filteredReg as |key value|}}
+        {{key}}`{{value}}`<br>
+    {{/each-in}}
+    <br><br>
+  {{/each}}
 </div>
 
+the table isn't going to work out as it is right now....
+might be better to use a filter and construct to objects, which are linked based on the Reg of the aircraft
+****READ NOTE IN PROMISE OF loadAircraftLists()*********
 
 
+{{!-- <table class="col-lg-offset-1 col-lg-10">
+  <tr>    
+    <td class="col-lg-1">Reg</td>
+    <td class="col-lg-1">Model</td>
+    <td class="col-lg-1">AircraftPositionType</td>
+    <td class="col-lg-1">Latitude</td>
+    <td class="col-lg-1">Longitude</td>
+    <td class="col-lg-1">Altitude</td>
+    <td class="col-lg-1">Speed</td>
+    <td class="col-lg-1">Track</td>
+    
 
+  </tr>
+  
+  {{#each aircraftList as |aircraft|}}  
+    <tr>
+      
+    
+    {{#each-in aircraft as |key value|}}      
+      <td>
+        `{{value}}`
+      </td>
+      
+    {{/each-in}}
+  </tr>  
+  {{/each}}
+</table> --}}
+
+
+<br><br>
+<div class="component-container col-lg-3 col-lg-offset-1 ">
+  <svg>
+    <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#39B7CD" />  
+  </svg> 
+  <div class="sliding-middle-out">
+    ¬ Aircrafts
+  </div>
+  {{!-- <div class="col-lg-offset-1 "> {{aircraft-list aircraftList=aircraftList filterAircraftPositions=(action 'filterAircraftPositions')}} </div> --}}
+  <div class="col-lg-offset-1 "> {{component dynamicInjectionValue aircraftList=aircraftList filterAircraftPositions=(action 'filterAircraftPositions')}} </div>
+  
+</div>
+
+<div class="component-container col-lg-3 col-lg-offset-1 ">
+  <svg>
+    <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#65909A" />  
+  </svg> 
+  <div class="sliding-middle-out">
+    ¬ Aircraft Positions
+  </div>
+  <div class="col-lg-offset-1 "> 
+    {{aircraft-positions aircraftPosition=aircraftPosition}}
+   </div>
+</div>
+
+<div class="component-container col-lg-3 col-lg-offset-1 ">
+  <svg >
+    <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#0EBFE9" />  
+  </svg> 
+  <div class="sliding-middle-out">
+	  ¬ Flights
+  </div>
+  <div class=""> 
+    {{flight-list flightList=flightList}}      
+  </div>
+</div>
+<br><br><br><br>
 

@@ -15,27 +15,34 @@ body {
 svg {
     height:12vh;
     width:6vw;
-} 
+}
+
+.tooltip-error {
+  background-color: #24b424;
+  color: rgb(77, 191, 24);
+}
 
 .accordionHeader {
-  color: yellow;
+  color: #343417;
 }
 
 .cp-Panel {
   border: 1px solid #ddd;
-  color:yellow;
+  color:#313124;
 }
 
 .aircraftsContainer {
-    background: rgb(43, 133, 128);
+    /* background: rgb(43, 133, 128); */
+    background: #39B7CD;
 }
 
 .aircraftsPositionsContainer {
-    background: blue;
+    /* background: blue; */
+    background: #65909A;
 } 
 
 .flightsContainer { 
-    background: yellow;
+    background: #0EBFE9;
 }
 .aviationData {  
     height: 45vh;
@@ -44,7 +51,7 @@ svg {
 }
 
 .position:nth-child(odd) {
-    background: red;
+    background: rgb(233, 220, 220);
     margin:50px 0px;
 }
 
@@ -63,7 +70,7 @@ svg {
   margin-bottom:0.7vh;
   margin-top:1.7vh;
 
-  background: lavender;
+  background: rgb(64, 64, 145);
 }
 
 
@@ -71,7 +78,7 @@ svg {
 .customScrollbar::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background: #E9ECF5;
+  background: rgb(73, 73, 131);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 

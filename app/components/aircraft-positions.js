@@ -5,26 +5,26 @@ const { Component } = Ember;
 export default Component.extend({
 	init(){
 		this._super(...arguments);
-		this.send('getAllAircraftPositions');
+		// this.send('getAllAircraftPositions');
 	},
 	classNames: ['aircraftsPositionsContainer', 'aviationData', 'customScrollbar'],
 	actions:{
-		getAllAircraftPositions() {
+		// getAllAircraftPositions() {
 
-		    let data = $.getJSON(`assets/AircraftPosition.json`);
+		//     let data = $.getJSON(`assets/AircraftPosition.json`);
 
-		    return data.then((json) => {
-	    		let records = [];
-			   	json.forEach(function(item){
-			       // records.push( Production.create(item) );
-			    	records.push(item);
-				    console.log("the records are : : " + JSON.stringify(records));
-			    });
+		//     return data.then((json) => {
+	    // 		let records = [];
+		// 	   	json.forEach(function(item){
+		// 	       // records.push( Production.create(item) );
+		// 	    	records.push(item);
+		// 		    console.log("the records are : : " + JSON.stringify(records));
+		// 	    });
 
-			    this.set('aircraftPosition', records);
-			    return records;
-		    })
-		}
+		// 	    this.set('aircraftPosition', records);
+		// 	    return records;
+		//     })
+		// }
 	}
 });
 

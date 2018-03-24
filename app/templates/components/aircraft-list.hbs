@@ -1,9 +1,16 @@
+{{#link-to 'aircrafts'}}
+    {{fa-icon "expand" size=3}}    
+{{/link-to}}
+
+<br><br>
+
 <div>
     {{#each aircraftList as |aircraft|}}
         <div class="position">
             {{#cp-panel as |p|}}
-                {{#p.toggle}}
-                    <p class="accordionHeader">{{aircraft.Model}} </p>
+                {{#p.toggle click=(action 'filterAircraftPositions' aircraft) }}
+                {{!-- {{action 'loadFilteredAircraftList'}} --}}
+                    <p class="accordionHeader">{{aircraft.Reg}} </p>
                     {{!-- <p>ssssss</p> --}}
                 {{/p.toggle}}
 

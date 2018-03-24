@@ -3,7 +3,7 @@ import Ember from 'ember';
 const { Service } = Ember;
 
 export default Service.extend({
-	getFlight(flightId) {
+	getFlights() {
 
 	    let data = $.getJSON(`assets/Flight.json`);
 
@@ -12,7 +12,7 @@ export default Service.extend({
 		   	json.forEach(function(item){
 		       // records.push( Production.create(item) );
 		    	records.push(item);
-			    console.log("the records are : : " + JSON.stringify(records));
+			    // console.log("the records are : : " + JSON.stringify(records));
 		    });
 
 		    this.set('data', records);
