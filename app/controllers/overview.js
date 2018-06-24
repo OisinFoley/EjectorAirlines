@@ -10,6 +10,9 @@ export default Controller.extend({
     init: function() {
         this._super();
 
+        this.set('filterAircraftPositions', false);
+        this.set('lblPositionsFilteredOn', 'filter disabled');
+
         this.set('dynamicInjectionValue', 'aircraft-list');
 
         this.set('aircraftRegFilters', []);
@@ -100,10 +103,18 @@ export default Controller.extend({
             "Track": "0"
         }];
         this.set('dummyPositions', dummyPositions);
+        this.set('aircraftsCheckboxText', 'Filter Aircraft Positions on click of item from Aircrafts');
 
       },
       loading: true,
       actions: {
+        toggleCheckBox() {
+            this.set('filterAircraftPositions', !this.get('filterAircraftPositions'));
+            if (this.get('filterAircraftPositions') === false) {
+                this.set('lblPositionsFilteredOn', 'filter disabled');
+            }            
+        },
+
         loadAircraftLists() {                
             this.get('aircraftService').getAircrafts().then((json) => {
         // console.log(`${JSON.stringify(json)} hahaha`);
@@ -148,17 +159,28 @@ export default Controller.extend({
 
         filterAircraftPositions(selectedAircraft) {
 
-            
-            let aircraftPosition = this.get('dummyPositions');
-            aircraftPosition = aircraftPosition.filter(position => position.Reg === selectedAircraft.Reg)
-    // let sss = json.filter(aircraft => aircraft.Reg == 'OY-HNV');
-
-            this.set(`aircraftPosition`, aircraftPosition);
+            if (this.get('filterAircraftPositions') === true) {
+                let aircraftPosition = this.get('dummyPositions');
+                aircraftPosition = aircraftPosition.filter(position => position.Reg === selectedAircraft.Reg)
+                // let sss = json.filter(aircraft => aircraft.Reg == 'OY-HNV');
+    
+                this.set('lblPositionsFilteredOn', selectedAircraft.Reg);
+                this.set(`aircraftPosition`, aircraftPosition);
+            }
         },
 
         filterAircraftPositionsByFlightId(selectedFlight) {
             console.log(`craicnw=ow`);
             console.log(selectedFlight);
+
+            //check that aircraft reg matches in both the position file and in the flight file, then also check that the timestamp associated with
+            //the position falls between the departure and arrival time for the flight, this is a shortened version of what's written below. . . 
+            //use 2 of the static d3 controls from the bookmarked session ..  then incorporate a websocket if you can
+
+            //later: add checkbox beside each row(in each of the 3 containers (for consistency but not really needed on positions)) and then 
+            //an apply button. later allow multiple toggling but for now just conceentrate on 1 row UI not massively important, just get functionality cause
+            //it's been holding us back up until now
+            
 
             /**
              * it seems to filter the aircraftpositions by 'flight', that we must grab the aircraftid associated with the flight, and compare it with the
@@ -170,10 +192,11 @@ export default Controller.extend({
         },
         
         filterFlightList(selectedAircraft) {
-                console.log('ghj')
-                // let flightList = this.get('flightList');
+                        
             let filteredFlightList = this.get('fullFlightList').filter(flight => flight.Aircraft_ID.Reg === selectedAircraft.Reg)
             this.set('displayedFlightList', filteredFlightList);
+            // let flightList = this.get('flightList');
+            
         },
 
         loadFilteredAircraftPositions () {

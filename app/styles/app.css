@@ -6,8 +6,8 @@ html {
 }
 
 body {
-    /* background: rgb(158, 192, 231); */
-    background: linear-gradient(skyblue, aqua, aqua, white);
+    background: rgb(36, 80, 131);
+    /* background: linear-gradient(skyblue, aqua, aqua, white); */
     
 }
 
@@ -97,7 +97,7 @@ svg {
   margin-bottom:0.7vh;
   margin-top:1.7vh;
 
-  background: lavender;
+  background: rgb(120, 120, 147);
 }
 
 
@@ -116,6 +116,39 @@ h3 {
 a:hover {
   color: gray;
 }
+
+div {
+  font-size: 16px;
+}
+
+.container-peripheral-heading {
+  color: white;
+}
+
+.container-peripheral-filtering {
+  color: white;
+  font-size: 16px;
+  float: right;
+}
+
+.infoContainer {
+  border-radius: 5px;  
+  border-width: 5px;
+  /* border-color: yellow; */
+  /* border-style: solid */
+}
+
+.accordionHeader {
+  text-align: center;
+}
+
+.container-content-body {
+  /* text-align: center;   */
+  margin-left: 3vw;
+}
+
+
+
 
 
 

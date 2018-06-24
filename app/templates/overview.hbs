@@ -1,6 +1,5 @@
 {{outlet}}
 <br>
-potatoes
 <br><br>
 
 <h4>
@@ -61,8 +60,16 @@ clicking on certain values from the will open a modal isolating those pieces of 
   {{/each}}
 </div>
 
+perhaps dont need such a big space between each key value pair in my tables<br>
+can avoid this by switching p eleemtn for something else. sort out spacing yourself
+
 the table isn't going to work out as it is right now....
 might be better to use a filter and construct to objects, which are linked based on the Reg of the aircraft
+later have sepaarte tables side by side and the positions height for each individual aircraft
+should be the height of the row for the aircraft divided by num of positions for that aircraft
+eg 220px / 18
+<br><br>
+need to handle when checkbox is first checked and filtered on message still says 'disabled' when it should say none<br>
 ****READ NOTE IN PROMISE OF loadAircraftLists()*********
 
 
@@ -94,26 +101,90 @@ might be better to use a filter and construct to objects, which are linked based
   {{/each}}
 </table> --}}
 
+the filtering needs optimising in terms of code use but right now it works
+
+
+
+
+
 
 <br><br>
-<div class="component-container col-lg-3 col-lg-offset-1 ">
+
+<div class="component-container col-lg-offset-1 col-lg-10">
   <svg>
     <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#39B7CD" />  
   </svg> 
-  <div class="sliding-middle-out">
-    ¬ Aircrafts
+
+  <div>
+    <p class="sliding-middle-out container-peripheral-heading">
+      ¬ Aircrafts
+      ({{aircraftList.length}})
+    </p>
+    <label class="checkbox-inline container-peripheral-filtering">
+      {{input type="checkbox" id="filterAircraftPositions" name="filterAircraftPositionsCheckbox" 
+      change=(action 'toggleCheckBox') }} {{aircraftsCheckboxText}}
+    </label>
   </div>
-  {{!-- <div class="col-lg-offset-1 "> {{aircraft-list aircraftList=aircraftList filterAircraftPositions=(action 'filterAircraftPositions')}} </div> --}}
-  <div class="col-lg-offset-1 "> 
+  
+  <div > 
     {{component dynamicInjectionValue aircraftList=aircraftList 
       filterAircraftPositions= (action 'filterAircraftPositions')
       filterFlightList= (action 'filterFlightList')
     }} 
   </div>
+
+
+
+
+<div class="component-container col-lg-offset-1 col-lg-10"></div>
+  <svg>
+    <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#65909A" />  
+  </svg> 
+
+  <p class="sliding-middle-out container-peripheral-heading">
+    ¬ Aircraft Positions
+    {{#if filterAircraftPositions}}
+      ({{aircraftPosition.length}})
+    {{else}}
+      ({{dummyPositions.length}})
+    {{/if}}
+  </p>
+  <label class="container-peripheral-filtering">
+    Filtered on: {{lblPositionsFilteredOn}}
+  </label>
+
+  <div> 
+    {{#if filterAircraftPositions}}
+      {{aircraft-positions aircraftPosition=aircraftPosition}}
+    {{else}}
+      {{aircraft-positions aircraftPosition=dummyPositions}}
+    {{/if}}
+  </div>
+
+   <svg >
+    <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#0EBFE9" />  
+  </svg> 
+  <div class="sliding-middle-out container-heading">
+	  ¬ Flights
+    ({{displayedFlightList.length}})
+  </div>
+  <div class=""> 
+    {{flight-list 
+      flightList=displayedFlightList 
+      filterAircraftPositionsByFlightId= (action 'filterAircraftPositionsByFlightId')
+    }}      
+  </div>
   
 </div>
 
-<div class="component-container col-lg-3 col-lg-offset-1 ">
+
+
+
+
+{{!-- the below are inside the same overall div defined above this comment --}}
+
+
+{{!-- <div class="component-container col-lg-3 col-lg-offset-1 ">
   <svg>
     <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#65909A" />  
   </svg> 
@@ -138,6 +209,6 @@ might be better to use a filter and construct to objects, which are linked based
       filterAircraftPositionsByFlightId= (action 'filterAircraftPositionsByFlightId')
     }}      
   </div>
-</div>
+</div> --}}
 <br><br><br><br>
 

@@ -14,7 +14,9 @@
                 {{#p.body}}
                     {{#each-in aircraft as |key value|}}
                     <br>
-                    `{{key}}`:`{{value}}`
+                    <p class="container-content-body">
+                        `{{key}}`:`{{value}}`
+                    </p>                    
                     {{/each-in}}
                 {{/p.body}}
             {{/cp-panel}}

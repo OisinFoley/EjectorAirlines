@@ -7,7 +7,7 @@ export default Component.extend({
 		this._super(...arguments);
 		// this.send('flightList');
 	},
-	classNames: ['flightsContainer', 'aviationData', 'customScrollbar'],
+	classNames: ['flightsContainer', 'aviationData', 'customScrollbar','infoContainer'],
 	actions:{
 		filterAircraftPositionsByFlightId(flight) {
 			this.sendAction('filterAircraftPositionsByFlightId', flight);

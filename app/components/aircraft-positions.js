@@ -7,7 +7,7 @@ export default Component.extend({
 		this._super(...arguments);
 		// this.send('getAllAircraftPositions');
 	},
-	classNames: ['aircraftsPositionsContainer', 'aviationData', 'customScrollbar'],
+	classNames: ['aircraftsPositionsContainer', 'aviationData', 'customScrollbar','infoContainer'],
 	actions:{
 		// getAllAircraftPositions() {
 

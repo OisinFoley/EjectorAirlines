@@ -6,20 +6,21 @@
 
 <div>
     {{#each aircraftList as |aircraft|}}
-        <div class="position">
+        <div class="position ">            
             {{#cp-panel as |p|}}
-                {{#p.toggle }}
-                {{!-- {{action 'loadFilteredAircraftList'}} --}}
-                    <p class="accordionHeader" {{action "filterAircraftPositions" aircraft}} >{{aircraft.Reg}} </p>
-                    {{!-- <p>ssssss</p> --}}
+                {{#p.toggle }}                
+                    <p class="accordionHeader" {{action "filterAircraftPositions" aircraft}} >{{aircraft.Reg}} </p>                    
                 {{/p.toggle}}
 
                 {{#p.body}}
                     {{#each-in aircraft as |key value|}}
                     <br>
-                    `{{key}}`:`{{value}}`
-                    {{/each-in}}
-                    {{!-- clickcontent --}}
+                    <p class="container-content-body">
+                        `{{key}}`:`{{value}}`
+                    </p>
+                        {{/each-in}}
+                        {{!-- clickcontent --}}
+                    
                 {{/p.body}}
             {{/cp-panel}}            
             <br><br><br>
