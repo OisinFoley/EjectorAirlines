@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import EmberArray from '@ember/array';
+import EmberObject from '@ember/object';
 // import { inject } from 'ember'
 
 
@@ -7,11 +9,28 @@ const { Controller, inject } = Ember;
 export default Controller.extend({
     aircraftService: inject.service('aircraft'),
     flightService: inject.service('flight'),
+    selectedFilteringKey: null,
     init: function() {
         this._super();
 
         this.set('filterAircraftPositions', false);
         this.set('lblPositionsFilteredOn', 'filter disabled');
+
+        this.set('stickyFilterCount', 0);
+
+        // let filterHeadings = EmberArray['Aircraft','Flight'];
+        // let filterHeadings = ['Aircraft','Flight'];
+        let filterHeadingObjects = [
+            { 'Aircraft': ['Reg', 'Model'] },                        
+            {'Flight': ['Customer', 'Departure Place', 'Arrival Place', 'Departure Time', 'Arrival Time' ] }
+        ];
+
+        this.set('selectedFilteringKey', 'Reg');
+
+        // let filterOptions = 
+        this.set('filterHeadingObjects', filterHeadingObjects);
+        
+        // this.set('filterOptions', filterOptions);
 
         this.set('dynamicInjectionValue', 'aircraft-list');
 
@@ -107,7 +126,44 @@ export default Controller.extend({
 
       },
       loading: true,
+      keyStringBuilder(filterOption) {
+            
+            let splitFilterOption = filterOption.split(' ');
+            if (filterOption.indexOf('Place') !== -1) {
+                return `Place_ID${splitFilterOption[0]}.PlaceName`;
+            }
+            else {
+                return filterOption.replace(' ', '');
+                // return `${splitFilterOption[0]}${splitFilterOption[1]}`;
+            }
+            
+       },
       actions: {
+        filterPositions(filterOption) {
+            // alert(filterOption);
+
+            //if contains whitespace
+            // this.send('sssddd', filterOption);
+
+            // this.keyStringBuilder(filterOption);
+            filterOption.indexOf(' ') === -1 ?
+                this.set('selectedFilteringKey', filterOption) : this.set('selectedFilteringKey', this.keyStringBuilder(filterOption));
+
+            this.set('lblPositionsFilteredOn', filterOption);
+        },
+        
+        pClicked(e) {
+            let stickyFilterCount = this.get('stickyFilterCount');
+
+            if (stickyFilterCount === 2) {
+                alert("Filter on one of either table's attributes instead...");
+                this.set('stickyFilterCount', 0);
+                return;
+            }
+
+            this.set('stickyFilterCount', stickyFilterCount + 1);
+            return;
+        },
         toggleCheckBox() {
             this.set('filterAircraftPositions', !this.get('filterAircraftPositions'));
             if (this.get('filterAircraftPositions') === false) {
@@ -158,6 +214,11 @@ export default Controller.extend({
         },
 
         filterAircraftPositions(selectedAircraft) {
+
+            //we must grab tehc chosen filter key set earlier later
+
+            //we must also handle if we pick a filter key, and already have something speicfied for before, 
+                //thus ensuring we don't need to change the textbox text for the filtering to update
 
             if (this.get('filterAircraftPositions') === true) {
                 let aircraftPosition = this.get('dummyPositions');

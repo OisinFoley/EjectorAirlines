@@ -1,5 +1,7 @@
 /* import { Bootstrap } from 'bootstrap'; */
 @import 'bootstrap';
+@import 'ember-basic-dropdown';
+
 
 html {
     height: 100%;
@@ -145,6 +147,19 @@ div {
 .container-content-body {
   /* text-align: center;   */
   margin-left: 3vw;
+}
+
+.background-option-gradient {
+  background: linear-gradient(to right, rgba(255,0,0,0), #42bff4);
+}
+
+.disabled-link
+/* .disabled-link:visited ,
+.disabled-link:active,
+.disabled-link:hover */
+{
+    background-color:#77a0a0 !important;
+    color: #e0ebde !important;
 }
 
 

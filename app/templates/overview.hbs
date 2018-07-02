@@ -63,6 +63,16 @@ clicking on certain values from the will open a modal isolating those pieces of 
 perhaps dont need such a big space between each key value pair in my tables<br>
 can avoid this by switching p eleemtn for something else. sort out spacing yourself
 
+<br>
+if you want headings of table to hug the topborder tighter then swap a p for a div
+
+<br><br>
+later, could have an option where the difference between departure and actual take off times are analysed and displayed using a d3 control<br>
+same goes for the landing vs arrival time
+
+<br><br> the later again, you can see how many positions occur for a given flight by comparing the times which fall inside the departure and arrival times
+for a flight which has the same flight id(or whatever the unique identifier is called)
+
 the table isn't going to work out as it is right now....
 might be better to use a filter and construct to objects, which are linked based on the Reg of the aircraft
 later have sepaarte tables side by side and the positions height for each individual aircraft
@@ -103,12 +113,47 @@ need to handle when checkbox is first checked and filtered on message still says
 
 the filtering needs optimising in terms of code use but right now it works
 
+<br><br>
+<br><br>
+<h4 style="color:yellow">
+  <b> the absolute must next thing to do</b><br>
+  
+    departure and arrival time(have slider disabled but still visible (possibly greyed out))
+    <br> keep slider to width of filteredOn label and dropdown, 
+    
+    <br> <br>
+  
 
+  add a input box between filtered on label and the dropdown button itself.
+  make relevant changes to filterAircraftPositions to finish off its filtering capabilities
+</h4>
 
+{{#each filterHeadingObjects as |filterObject|}}
+  
+    {{#each-in filterObject as |filterObjKey filterObjValue|}}
+      {{filterObjKey}} 
+            
+      {{#each filterObjValue as |filterOption|}}
+        {{filterOption}}<br>
+      {{/each}}
+    {{/each-in}}
+  
+  
 
+{{/each}}
 
 
 <br><br>
+
+
+{{!-- {{#each filterHeadings as |filterHeadingKey filterHeadingValues|}}  
+  {{filterHeadingKey}}
+  {{filterHeadingValues}}
+{{/each}} --}}
+
+
+
+
 
 <div class="component-container col-lg-offset-1 col-lg-10">
   <svg>
@@ -126,7 +171,7 @@ the filtering needs optimising in terms of code use but right now it works
     </label>
   </div>
   
-  <div > 
+  <div> 
     {{component dynamicInjectionValue aircraftList=aircraftList 
       filterAircraftPositions= (action 'filterAircraftPositions')
       filterFlightList= (action 'filterFlightList')
@@ -148,10 +193,34 @@ the filtering needs optimising in terms of code use but right now it works
     {{else}}
       ({{dummyPositions.length}})
     {{/if}}
-  </p>
+  </p>  
+  <div class="dropdown container-peripheral-filtering">
+    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+
+      {{#each filterHeadingObjects as |filterObject|}}
+        
+          {{#each-in filterObject as |filterObjKey filterObjValue|}}
+              <li class="disabled-link">
+                  <p {{action "pClicked" bubbles=false}}><b>{{filterObjKey}}</b></p>
+              </li>
+              {{#each filterObjValue as |filterOption|}}
+                <li role="presentation">
+                  <a {{action 'filterPositions' filterOption}}>{{filterOption}}</a>
+                </li>
+              {{/each}}
+          {{/each-in}}
+    
+      {{/each}}
+
+    </ul>
+  
+</div>
   <label class="container-peripheral-filtering">
     Filtered on: {{lblPositionsFilteredOn}}
   </label>
+  
 
   <div> 
     {{#if filterAircraftPositions}}
@@ -161,20 +230,24 @@ the filtering needs optimising in terms of code use but right now it works
     {{/if}}
   </div>
 
-   <svg >
+
+
+
+<div class="component-container col-lg-offset-1 col-lg-10"></div>
+  <svg>
     <circle cx="50" cy="50" r="10" stroke="white" stroke-width="1.5" fill="#0EBFE9" />  
   </svg> 
-  <div class="sliding-middle-out container-heading">
+
+  <p class="sliding-middle-out container-peripheral-heading">
 	  ¬ Flights
     ({{displayedFlightList.length}})
-  </div>
+  </p>
   <div class=""> 
     {{flight-list 
       flightList=displayedFlightList 
       filterAircraftPositionsByFlightId= (action 'filterAircraftPositionsByFlightId')
     }}      
   </div>
-  
 </div>
 
 
