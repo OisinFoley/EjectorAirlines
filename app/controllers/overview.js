@@ -10,13 +10,17 @@ export default Controller.extend({
     aircraftService: inject.service('aircraft'),
     flightService: inject.service('flight'),
     selectedFilteringKey: null,
-    init: function() {
+    init() {
         this._super();
 
         this.set('filterAircraftPositions', false);
         this.set('lblPositionsFilteredOn', 'filter disabled');
 
         this.set('stickyFilterCount', 0);
+        
+        this.send('setupFilterPlaceholder');
+
+        
 
         // let filterHeadings = EmberArray['Aircraft','Flight'];
         // let filterHeadings = ['Aircraft','Flight'];
@@ -125,7 +129,11 @@ export default Controller.extend({
         this.set('aircraftsCheckboxText', 'Filter Aircraft Positions on click of item from Aircrafts');
 
       },
-      loading: true,
+      didRender() {
+        // this._super(...arguments);
+        // loading: true,
+        // this.send('setupFilterPlaceholder');
+      },
       keyStringBuilder(filterOption) {
             
             let splitFilterOption = filterOption.split(' ');
@@ -139,6 +147,18 @@ export default Controller.extend({
             
        },
       actions: {
+        setupFilterPlaceholder(inputElementValue = '') {
+            if (inputElementValue === '') {
+                let filterPlaceholder = 'Type text to filter on the selected dropdown key';
+                this.set('filterPlaceholder', filterPlaceholder);
+            }
+        },
+        removePlaceholder() {
+            this.set('filterPlaceholder', '');
+        },
+        updateFirstName() {
+            alert("hi");
+        },
         filterPositions(filterOption) {
             // alert(filterOption);
 
@@ -213,7 +233,9 @@ export default Controller.extend({
             });
         },
 
-        filterAircraftPositions(selectedAircraft) {
+        filterAircraftPositions(filterValue) {
+
+            // alert(filterValue);
 
             //we must grab tehc chosen filter key set earlier later
 

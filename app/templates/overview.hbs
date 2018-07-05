@@ -124,7 +124,8 @@ the filtering needs optimising in terms of code use but right now it works
     <br> <br>
   
 
-  add a input box between filtered on label and the dropdown button itself.
+  filter input with conditional placeholder in place,
+  now handle filtering in filteraircraftpositions accordingly
   make relevant changes to filterAircraftPositions to finish off its filtering capabilities
 </h4>
 
@@ -217,6 +218,15 @@ the filtering needs optimising in terms of code use but right now it works
     </ul>
   
 </div>
+
+  
+  <input value={{filterPlaceholder}} 
+    oninput={{action "filterAircraftPositions"}} 
+    onfocus={{action "removePlaceholder"}}
+    onblur={{action "setupFilterPlaceholder" value="target.value"}} />
+
+
+
   <label class="container-peripheral-filtering">
     Filtered on: {{lblPositionsFilteredOn}}
   </label>
