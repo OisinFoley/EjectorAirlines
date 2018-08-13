@@ -131,25 +131,24 @@ export default Controller.extend({
         this.set('unfilteredAircraftPositions', dummyPositions);
         this.set('aircraftsCheckboxText', 'Filter Aircraft Positions on click of item from Aircrafts');
 
-      },
-      didRender() {
-        // this._super(...arguments);
-        // loading: true,
-        // this.send('setupFilterPlaceholder');
-      },
-      dropdownKeyStringBuilder(filterOption) {
-            
+    },
+    didRender() {
+    // this._super(...arguments);
+    // loading: true,
+    // this.send('setupFilterPlaceholder');
+    },
+    dropdownKeyStringBuilder(filterOption) {
+        
         let splitFilterOption = filterOption.split(' ');
         if (filterOption.indexOf('Place') !== -1) {
             return `Place_ID${splitFilterOption[0]}.PlaceName`;
         }
         else {
             return filterOption.replace(' ', '');
-            // return `${splitFilterOption[0]}${splitFilterOption[1]}`;
         }
-        
-      },
-      tableObjectKeyStringBuilder(selectedFilterKeyFromDropdown) {
+    
+    },
+    tableObjectKeyStringBuilder(selectedFilterKeyFromDropdown) {
 
         let tableKeyToFilterOn;
 
@@ -160,38 +159,102 @@ export default Controller.extend({
         }
         // alert(tableKeyToFilterOn);
         return tableKeyToFilterOn;
-        
+    
 
-      },
+    },
 
-      filterOnCustomer(valueToFilterOn) {
-            if (!valueToFilterOn) {
-                this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
-            }
+    filterOnModel(valueToFilterOn) {
+        if (!valueToFilterOn) {
+            this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
+        }
 
-            let aircraftsMatchingSpecifiedCustomer = [],
-            positionsFilteredOnCustomer = [],
-            aircraftPositions = this.get('unfilteredAircraftPositions');
+        let positionsFilteredOnModel = [],
+          aircraftPositions = this.get("unfilteredAircraftPositions"),
+          registrationsMatchingModel;
 
-            this.get('fullFlightList').forEach( function(flight) {
-               if (flight.Customer_ID.Description.toUpperCase().includes(valueToFilterOn.toUpperCase())) {
-                 let { DepartureTime, ArrivalTime, Aircraft_ID: { Reg } } = flight;
-                 aircraftsMatchingSpecifiedCustomer.push({ DepartureTime, ArrivalTime, Reg });
-               }
+        registrationsMatchingModel = this.get("aircraftList").filter(
+          aircraft =>
+            aircraft.Model.toUpperCase().includes(valueToFilterOn.toUpperCase())
+        );
+
+        registrationsMatchingModel.forEach(function (reg) {
+            aircraftPositions.forEach(function (position) {
+                if (position.Reg.includes(reg.Reg)) {
+                    positionsFilteredOnModel.push(position);
+                }
             });
-            
-            aircraftsMatchingSpecifiedCustomer.forEach(function (flight) {
-                aircraftPositions.forEach(function(flightPosition) {
-                    if (flight.Reg === flightPosition.Reg && Date.parse(flightPosition.Timestamp) > Date.parse(flight.DepartureTime) && Date.parse(flightPosition.Timestamp) < Date.parse(flight.ArrivalTime)) {
-                        positionsFilteredOnCustomer.push(flightPosition);
-                    }
-                })
-            })
-            
-            this.set('dummyPositions', positionsFilteredOnCustomer);
-        },
+        });
+
+        this.set("dummyPositions", positionsFilteredOnModel);        
+
+
+        // aircraftList;
+
+    },
+
+    filterOnCustomer(valueToFilterOn) {
+        if (!valueToFilterOn) {
+            this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
+        }
+
+        let flightsMatchingSpecifiedCustomer = [],
+          positionsFilteredOnCustomer = [],
+          aircraftPositions = this.get("unfilteredAircraftPositions");
+
+        this.get('fullFlightList').forEach( function(flight) {
+            if (flight.Customer_ID.Description.toUpperCase().includes(valueToFilterOn.toUpperCase())) {
+                let { DepartureTime, ArrivalTime, Aircraft_ID: { Reg } } = flight;
+                flightsMatchingSpecifiedCustomer.push({ DepartureTime, ArrivalTime, Reg });
+            }
+        });
+        
+        flightsMatchingSpecifiedCustomer.forEach(function(flight) {
+          aircraftPositions.forEach(function(flightPosition) {
+            if (this.positionMatchesWithFlight(flight, flightPosition)) {
+              positionsFilteredOnCustomer.push(flightPosition);
+            }
+          });
+        });
+        
+        this.set('dummyPositions', positionsFilteredOnCustomer);
+    },
+
+    positionMatchesWithFlight(flight, flightPosition) {
+        return (flight.Reg === flightPosition.Reg && Date.parse(flightPosition.Timestamp) > Date.parse(flight.DepartureTime) && Date.parse(flightPosition.Timestamp) < Date.parse(flight.ArrivalTime));
+    },
+
+    filterOnDepartureLocation(valueToFilterOn) {
+        if (!valueToFilterOn) {
+            this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
+        }
+
+        let flightsMatchingSpecifiedPlaceName = [],
+          positionsFilteredOnPlaceName = [],
+          aircraftPositions = this.get("unfilteredAircraftPositions"),
+          selectedFilteringKey = this.get("selectedFilteringKey").split(".");
+
+        this.get('fullFlightList').forEach(function (flight) {
+            // if (flight.Customer_ID.Description.toUpperCase().includes(valueToFilterOn.toUpperCase())) {
+            if (flight[`${selectedFilteringKey[0]}`][`${selectedFilteringKey[1]}`].toUpperCase().includes(valueToFilterOn.toUpperCase())) {
+
+                let { DepartureTime, ArrivalTime, Aircraft_ID: { Reg } } = flight;
+                flightsMatchingSpecifiedPlaceName.push({ DepartureTime, ArrivalTime, Reg });
+            }
+        });
+
+        flightsMatchingSpecifiedPlaceName.forEach(flight => {
+          aircraftPositions.forEach(flightPosition => {
+            if (this.positionMatchesWithFlight(flight, flightPosition)) {
+                positionsFilteredOnPlaceName.push(flightPosition);
+            }
+          });
+        });
+
+
+        this.set("dummyPositions", positionsFilteredOnPlaceName);
+    },
        
-      actions: {
+    actions: {
         setupFilterPlaceholder(inputElementValue = '') {
             if (inputElementValue === '') {
                 let filterPlaceholder = 'Type text to filter on the selected dropdown key';
@@ -204,12 +267,12 @@ export default Controller.extend({
         updateFirstName() {
             alert("hi");
         },
-        setKeyToFilterOn(selectedDropdwonFilterOption, inputFilteringValue) {
-            selectedDropdwonFilterOption.indexOf(' ') === -1 ?
-                this.set('selectedFilteringKey', selectedDropdwonFilterOption) : 
-                this.set('selectedFilteringKey', this.dropdownKeyStringBuilder(selectedDropdwonFilterOption));
+        setKeyToFilterOn(selectedDropdownFilterOption, inputFilteringValue) {
+            selectedDropdownFilterOption.indexOf(' ') === -1 ?
+                this.set('selectedFilteringKey', selectedDropdownFilterOption) : 
+                this.set('selectedFilteringKey', this.dropdownKeyStringBuilder(selectedDropdownFilterOption));
 
-            this.set('keyToFilterOn', selectedDropdwonFilterOption);
+            this.set('keyToFilterOn', selectedDropdownFilterOption);
             this.send('handleNullFilteringKey');
         },
         
@@ -289,9 +352,7 @@ export default Controller.extend({
                 this.set('displayNoKeySetToFilterOn', false);
                 this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
             } else {
-                // alert(valueToFilterOn);
-
-                // this.set('keyToFilterOn', filterOption);
+                
                 let keyToFilterOn = this.get('keyToFilterOn');
                 let aircraftPositions = this.get('unfilteredAircraftPositions');
                 console.log(this.get('fullFlightList'));
@@ -303,44 +364,46 @@ export default Controller.extend({
 
                     this.tableObjectKeyStringBuilder(keyToFilterOn);
 
-                    switch(keyToFilterOn) {
-                        case 'Reg': {
-                            aircraftPositions = aircraftPositions.filter(position => position.Reg.toUpperCase().includes(valueToFilterOn.toUpperCase()));
-                            this.set('dummyPositions', aircraftPositions);
+                    switch (keyToFilterOn) {
+                        case "Reg": {
+                            aircraftPositions = aircraftPositions.filter(
+                            position =>
+                                position.Reg.toUpperCase().includes(
+                                valueToFilterOn.toUpperCase()
+                                )
+                            );
+                            this.set("dummyPositions", aircraftPositions);
                             break;
                         }
-                        case 'Customer': {
+                        case "Model": {
+                            // aircraftPositions = aircraftPositions.filter(position => position.Reg.toUpperCase().includes(valueToFilterOn.toUpperCase()));
+                            // this.set('dummyPositions', aircraftPositions);
+                            this.filterOnModel(valueToFilterOn);
+                            break;
+                        }
+                        case "Customer": {
                             this.filterOnCustomer(valueToFilterOn);
                             break;
                         }
-                        // case 'Model': {
-                        //  {
-                        //     aircraftPositions = aircraftPositions.filter(position => position.Model.includes(valueToFilterOn));
-                        //     this.set('dummyPositions', aircraftPositions);
-                        // }
-                        // ***** even though we only have 1 model for now, it's good to wire this up incase we add new data later,
-                        // which may feature additional models
+                        case "Departure Place": {
+                            // **** rename the function that does the work in filterOnDepartureLocation
+                            // **** to something else, then continue to call filterOnDepartureLocation from here,
+                            // **** but call the worker function from within filterOnDepartureLocation
+
+                            // **** then do the same with filterOnArrivalLocation
+                            // **** reduce code duplication before moving toward working on
+                            // **** departure time and arrival time
+                            this.filterOnDepartureLocation(valueToFilterOn);
+                            break;
+                        }
+                        case "Arrival Place": {
+                            this.filterOnArrivalLocation(valueToFilterOn);
+                            break;
+                        }
                     }
                 } else {
                     this.set('displayNoKeySetToFilterOn', true);
                 }
-
-                //we must grab tehc chosen filter key set earlier later
-
-                //we must also handle if we pick a filter key, and already have something speicfied for before, 
-                    //thus ensuring we don't need to change the textbox text for the filtering to update
-
-                // if (keyToFilterOn) {
-                //     let aircraftPositions = this.get('dummyPositions');
-
-                //     // aircraftPositions = aircraftPositions.filter(position => position.Reg === selectedAircraft.Reg)
-                //     aircraftPositions = aircraftPositions.filter(tableName => tableName.Reg === selectedAircraft.Reg)
-                    
-                //     // let sss = json.filter(aircraft => aircraft.Reg == 'OY-HNV');
-        
-                //     // this.set('lblPositionsFilteredOn', selectedAircraft.Reg);
-                //     // this.set(`aircraftPosition`, aircraftPositions);
-                // }
             }
                 
             
