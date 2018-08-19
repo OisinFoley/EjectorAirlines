@@ -13,13 +13,13 @@ export default Controller.extend({
     init() {
         this._super();
 
-        this.set('oisin','o1o1o1');
+        this.set('oisin', 'o1o1o1');
 
         this.set('filterAircraftPositions', false);
         this.set('lblPositionsFilteredOn', 'filter disabled');
 
         this.set('stickyFilterCount', 0);
-        
+
         this.send('setupFilterPlaceholder');
 
         this.set('noKeySetToFilterOn', false);
@@ -27,21 +27,21 @@ export default Controller.extend({
         // let filterHeadings = EmberArray['Aircraft','Flight'];
         // let filterHeadings = ['Aircraft','Flight'];
         let filterHeadingObjects = [
-            { 'Aircraft': ['Reg', 'Model'] },                        
-            {'Flight': ['Customer', 'Departure Place', 'Arrival Place', 'Departure Time', 'Arrival Time' ] }
+            { 'Aircraft': ['Reg', 'Model'] },
+            { 'Flight': ['Customer', 'Departure Place', 'Arrival Place', 'Departure Time', 'Arrival Time'] }
         ];
 
         this.set('selectedFilteringKey', 'Reg');
 
         // let filterOptions = 
         this.set('filterHeadingObjects', filterHeadingObjects);
-        
+
         // this.set('filterOptions', filterOptions);
 
         this.set('dynamicInjectionValue', 'aircraft-list');
 
         this.set('aircraftRegFilters', []);
-      
+
         this.send('loadAircraftLists');
         // this.send('loadFilteredAircraftList');
         // this.send('loadFilteredAircraftPositions');
@@ -102,43 +102,43 @@ export default Controller.extend({
                 "Track": "0"
             },
             {
-            "ID": "1056461",
-            "Reg": "OO-NSF",
-            "tRegJourney_ID": "0",
-            "AircraftPositionSource_ID": "1",
-            "AircraftPositionType": "OnGround",
-            "Timestamp": "2017-09-20 05:49:00",
-            "Latitude": "57.2099",
-            "Longitude": "-2.19924",
-            "Altitude": "249",
-            "Speed": "0",
-            "Track": "0"
+                "ID": "1056461",
+                "Reg": "OO-NSF",
+                "tRegJourney_ID": "0",
+                "AircraftPositionSource_ID": "1",
+                "AircraftPositionType": "OnGround",
+                "Timestamp": "2017-09-20 05:49:00",
+                "Latitude": "57.2099",
+                "Longitude": "-2.19924",
+                "Altitude": "249",
+                "Speed": "0",
+                "Track": "0"
             },
             {
-            "ID": "1056465",
-            "Reg": "OO-NSF",
-            "tRegJourney_ID": "0",
-            "AircraftPositionSource_ID": "1",
-            "AircraftPositionType": "OnGround",
-            "Timestamp": "2017-09-20 05:50:00",
-            "Latitude": "57.2099",
-            "Longitude": "-2.19916",
-            "Altitude": "249",
-            "Speed": "0",
-            "Track": "0"
-        }];
+                "ID": "1056465",
+                "Reg": "OO-NSF",
+                "tRegJourney_ID": "0",
+                "AircraftPositionSource_ID": "1",
+                "AircraftPositionType": "OnGround",
+                "Timestamp": "2017-09-20 05:50:00",
+                "Latitude": "57.2099",
+                "Longitude": "-2.19916",
+                "Altitude": "249",
+                "Speed": "0",
+                "Track": "0"
+            }];
         this.set('dummyPositions', dummyPositions)
         this.set('unfilteredAircraftPositions', dummyPositions);
         this.set('aircraftsCheckboxText', 'Filter Aircraft Positions on click of item from Aircrafts');
 
     },
     didRender() {
-    // this._super(...arguments);
-    // loading: true,
-    // this.send('setupFilterPlaceholder');
+        // this._super(...arguments);
+        // loading: true,
+        // this.send('setupFilterPlaceholder');
     },
     dropdownKeyStringBuilder(filterOption) {
-        
+
         let splitFilterOption = filterOption.split(' ');
         if (filterOption.indexOf('Place') !== -1) {
             return `Place_ID${splitFilterOption[0]}.PlaceName`;
@@ -146,20 +146,20 @@ export default Controller.extend({
         else {
             return filterOption.replace(' ', '');
         }
-    
+
     },
     tableObjectKeyStringBuilder(selectedFilterKeyFromDropdown) {
 
         let tableKeyToFilterOn;
 
-        switch(selectedFilterKeyFromDropdown) {
+        switch (selectedFilterKeyFromDropdown) {
             case 'Reg' || 'Model': {
                 tableKeyToFilterOn = `Aircraft.${selectedFilterKeyFromDropdown}`;
             }
         }
         // alert(tableKeyToFilterOn);
         return tableKeyToFilterOn;
-    
+
 
     },
 
@@ -169,12 +169,12 @@ export default Controller.extend({
         }
 
         let positionsFilteredOnModel = [],
-          aircraftPositions = this.get("unfilteredAircraftPositions"),
-          registrationsMatchingModel;
+            aircraftPositions = this.get("unfilteredAircraftPositions"),
+            registrationsMatchingModel;
 
         registrationsMatchingModel = this.get("aircraftList").filter(
-          aircraft =>
-            aircraft.Model.toUpperCase().includes(valueToFilterOn.toUpperCase())
+            aircraft =>
+                aircraft.Model.toUpperCase().includes(valueToFilterOn.toUpperCase())
         );
 
         registrationsMatchingModel.forEach(function (reg) {
@@ -185,7 +185,7 @@ export default Controller.extend({
             });
         });
 
-        this.set("dummyPositions", positionsFilteredOnModel);        
+        this.set("dummyPositions", positionsFilteredOnModel);
 
 
         // aircraftList;
@@ -198,24 +198,24 @@ export default Controller.extend({
         }
 
         let flightsMatchingSpecifiedCustomer = [],
-          positionsFilteredOnCustomer = [],
-          aircraftPositions = this.get("unfilteredAircraftPositions");
+            positionsFilteredOnCustomer = [],
+            aircraftPositions = this.get("unfilteredAircraftPositions");
 
-        this.get('fullFlightList').forEach( function(flight) {
+        this.get('fullFlightList').forEach(function (flight) {
             if (flight.Customer_ID.Description.toUpperCase().includes(valueToFilterOn.toUpperCase())) {
                 let { DepartureTime, ArrivalTime, Aircraft_ID: { Reg } } = flight;
                 flightsMatchingSpecifiedCustomer.push({ DepartureTime, ArrivalTime, Reg });
             }
         });
-        
-        flightsMatchingSpecifiedCustomer.forEach(function(flight) {
-          aircraftPositions.forEach(function(flightPosition) {
-            if (this.positionMatchesWithFlight(flight, flightPosition)) {
-              positionsFilteredOnCustomer.push(flightPosition);
-            }
-          });
+
+        flightsMatchingSpecifiedCustomer.forEach(function (flight) {
+            aircraftPositions.forEach(function (flightPosition) {
+                if (this.positionMatchesWithFlight(flight, flightPosition)) {
+                    positionsFilteredOnCustomer.push(flightPosition);
+                }
+            });
         });
-        
+
         this.set('dummyPositions', positionsFilteredOnCustomer);
     },
 
@@ -224,17 +224,74 @@ export default Controller.extend({
     },
 
     filterOnDepartureLocation(valueToFilterOn) {
+        this.filterOnSpecifiedLocationType(valueToFilterOn);
+    },
+
+    filterOnArrivalLocation(valueToFilterOn) {
+        this.filterOnSpecifiedLocationType(valueToFilterOn);
+    },
+
+    filterOnDepartureTime(valueToFilterOn) {
+        this.filterOnSpecifiedTimeParameter(valueToFilterOn);
+    },
+
+    filterOnArrivalTime(valueToFilterOn) {
+        this.filterOnSpecifiedTimeParameter(valueToFilterOn);
+    },
+
+    filterOnSpecifiedTimeParameter(valueToFilterOn) {
+        if (!valueToFilterOn) {
+            this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
+        }
+
+        let flightsMatchingSpecifiedTimeParameterIntervals = [],
+            positionsFilteredOnTimeParameterIntervals = [],
+            aircraftPositions = this.get("unfilteredAircraftPositions"),
+            selectedFilteringKey = this.get("selectedFilteringKey");
+
+        // alert(selectedFilteringKey);
+
+        //hardcode a dummy time for now, for convenience
+        //inside the foreachs you'll need to date.pasre the date strings, and provide a dummy param that matches what's desired
+        //when working, add timepicker, maybe use ember moment addon -> check your github repo from the ember tut if needed
+
+
+        //when debugging, this seems to be working, just change he values so that some of the dummyvalues will remain after filtering is applied
+        //then it should also work for arrival time
+        //finally add the time pickers for dynamism
+        let dummyTimeIntervals = [Date.parse('2017-09-20 12:00:00'), Date.parse('2017-09-21 14:22:00')];
+
+        this.get('fullFlightList').forEach(function (flight) {
+            if (Date.parse(flight[`${selectedFilteringKey}`]) >= dummyTimeIntervals[0]
+                && Date.parse(flight[`${selectedFilteringKey}`]) <= dummyTimeIntervals[1]) {
+                let { DepartureTime, ArrivalTime, Aircraft_ID: { Reg } } = flight;
+                flightsMatchingSpecifiedTimeParameterIntervals.push({ DepartureTime, ArrivalTime, Reg });
+            }
+        });
+
+        flightsMatchingSpecifiedTimeParameterIntervals.forEach(flight => {
+            aircraftPositions.forEach(flightPosition => {
+                if (this.positionMatchesWithFlight(flight, flightPosition)) {
+                    positionsFilteredOnTimeParameterIntervals.push(flightPosition);
+                }
+            });
+        });
+
+        this.set('dummyPositions', positionsFilteredOnTimeParameterIntervals);
+    },
+
+
+    filterOnSpecifiedLocationType(valueToFilterOn) {
         if (!valueToFilterOn) {
             this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
         }
 
         let flightsMatchingSpecifiedPlaceName = [],
-          positionsFilteredOnPlaceName = [],
-          aircraftPositions = this.get("unfilteredAircraftPositions"),
-          selectedFilteringKey = this.get("selectedFilteringKey").split(".");
+            positionsFilteredOnPlaceName = [],
+            aircraftPositions = this.get("unfilteredAircraftPositions"),
+            selectedFilteringKey = this.get("selectedFilteringKey").split(".");
 
         this.get('fullFlightList').forEach(function (flight) {
-            // if (flight.Customer_ID.Description.toUpperCase().includes(valueToFilterOn.toUpperCase())) {
             if (flight[`${selectedFilteringKey[0]}`][`${selectedFilteringKey[1]}`].toUpperCase().includes(valueToFilterOn.toUpperCase())) {
 
                 let { DepartureTime, ArrivalTime, Aircraft_ID: { Reg } } = flight;
@@ -243,17 +300,17 @@ export default Controller.extend({
         });
 
         flightsMatchingSpecifiedPlaceName.forEach(flight => {
-          aircraftPositions.forEach(flightPosition => {
-            if (this.positionMatchesWithFlight(flight, flightPosition)) {
-                positionsFilteredOnPlaceName.push(flightPosition);
-            }
-          });
+            aircraftPositions.forEach(flightPosition => {
+                if (this.positionMatchesWithFlight(flight, flightPosition)) {
+                    positionsFilteredOnPlaceName.push(flightPosition);
+                }
+            });
         });
 
 
         this.set("dummyPositions", positionsFilteredOnPlaceName);
     },
-       
+
     actions: {
         setupFilterPlaceholder(inputElementValue = '') {
             if (inputElementValue === '') {
@@ -269,13 +326,13 @@ export default Controller.extend({
         },
         setKeyToFilterOn(selectedDropdownFilterOption, inputFilteringValue) {
             selectedDropdownFilterOption.indexOf(' ') === -1 ?
-                this.set('selectedFilteringKey', selectedDropdownFilterOption) : 
+                this.set('selectedFilteringKey', selectedDropdownFilterOption) :
                 this.set('selectedFilteringKey', this.dropdownKeyStringBuilder(selectedDropdownFilterOption));
 
             this.set('keyToFilterOn', selectedDropdownFilterOption);
             this.send('handleNullFilteringKey');
         },
-        
+
         pClicked(e) {
             let stickyFilterCount = this.get('stickyFilterCount');
 
@@ -292,12 +349,12 @@ export default Controller.extend({
             this.set('filterAircraftPositions', !this.get('filterAircraftPositions'));
             if (this.get('filterAircraftPositions') === false) {
                 this.set('lblPositionsFilteredOn', 'filter disabled');
-            }            
+            }
         },
 
-        loadAircraftLists() {                
+        loadAircraftLists() {
             this.get('aircraftService').getAircrafts().then((json) => {
-        // console.log(`${JSON.stringify(json)} hahaha`);
+                // console.log(`${JSON.stringify(json)} hahaha`);
                 this.set(`aircraftList`, json);
                 this.set('loading', false);
 
@@ -315,21 +372,21 @@ export default Controller.extend({
                 // console.log(sss);
 
                 let aircraftRegs = this.get('aircraftRegFilters');
-                
-                json.forEach(function (aircraft, i) {                    
+
+                json.forEach(function (aircraft, i) {
                     aircraftRegs.push({ Reg: aircraft.Reg, values: [] });
                 });
                 // this.set('aircraftRegistrations', aircraftRegs);
-        // console.log(`abc : ${this.get('aircraftRegFilters')}`);
+                // console.log(`abc : ${this.get('aircraftRegFilters')}`);
                 this.set('aircraftRegFilters', aircraftRegs);
-                
+
                 // this.send('loadAircraftPositions');
-                
-            });  
+
+            });
             // console.log(this.get('aircraftRegistrations'));
         },
 
-        loadFilteredAircraftList () {
+        loadFilteredAircraftList() {
             console.log('test');
             let chosenAricraftReg = 'OO-NSF';
             this.get('aircraftService').getFilteredAircrafts(chosenAricraftReg).then((json) => {
@@ -343,16 +400,16 @@ export default Controller.extend({
             } else {
                 this.set('displayNoKeySetToFilterOn', false);
             }
-        },        
+        },
 
         // filterAircraftPositions(filterValue) {
         filterOnSelectedKey(valueToFilterOn) {
 
-            if(!valueToFilterOn) {
+            if (!valueToFilterOn) {
                 this.set('displayNoKeySetToFilterOn', false);
                 this.set('dummyPositions', this.get('unfilteredAircraftPositions'));
             } else {
-                
+
                 let keyToFilterOn = this.get('keyToFilterOn');
                 let aircraftPositions = this.get('unfilteredAircraftPositions');
                 console.log(this.get('fullFlightList'));
@@ -367,10 +424,10 @@ export default Controller.extend({
                     switch (keyToFilterOn) {
                         case "Reg": {
                             aircraftPositions = aircraftPositions.filter(
-                            position =>
-                                position.Reg.toUpperCase().includes(
-                                valueToFilterOn.toUpperCase()
-                                )
+                                position =>
+                                    position.Reg.toUpperCase().includes(
+                                        valueToFilterOn.toUpperCase()
+                                    )
                             );
                             this.set("dummyPositions", aircraftPositions);
                             break;
@@ -386,13 +443,6 @@ export default Controller.extend({
                             break;
                         }
                         case "Departure Place": {
-                            // **** rename the function that does the work in filterOnDepartureLocation
-                            // **** to something else, then continue to call filterOnDepartureLocation from here,
-                            // **** but call the worker function from within filterOnDepartureLocation
-
-                            // **** then do the same with filterOnArrivalLocation
-                            // **** reduce code duplication before moving toward working on
-                            // **** departure time and arrival time
                             this.filterOnDepartureLocation(valueToFilterOn);
                             break;
                         }
@@ -400,15 +450,27 @@ export default Controller.extend({
                             this.filterOnArrivalLocation(valueToFilterOn);
                             break;
                         }
+                        case "Departure Time": {
+                            //same as with departure locations...
+                            //find flight who have dep / arrival time between the 2 specified datetime values
+                            //then just return the positions that were a part of that flights
+
+                            this.filterOnDepartureTime(valueToFilterOn);
+                            break;
+                        }
+                        case "Arrival Time": {
+                            this.filterOnArrivalTime(valueToFilterOn);
+                            break;
+                        }
                     }
                 } else {
                     this.set('displayNoKeySetToFilterOn', true);
                 }
             }
-                
-            
 
-            
+
+
+
         },
 
         filterAircraftPositionsByFlightId(selectedFlight) {
@@ -422,7 +484,7 @@ export default Controller.extend({
             //later: add checkbox beside each row(in each of the 3 containers (for consistency but not really needed on positions)) and then 
             //an apply button. later allow multiple toggling but for now just conceentrate on 1 row UI not massively important, just get functionality cause
             //it's been holding us back up until now
-            
+
 
             /**
              * it seems to filter the aircraftpositions by 'flight', that we must grab the aircraftid associated with the flight, and compare it with the
@@ -430,38 +492,38 @@ export default Controller.extend({
              * timestamp falls within that timerange, as without doing this timerange check, we may be including positions for other flights that the
              * aircraft took part in  . . 
              */
-            
+
         },
-        
+
         filterFlightList(selectedAircraft) {
-                        
+
             let filteredFlightList = this.get('fullFlightList').filter(flight => flight.Aircraft_ID.Reg === selectedAircraft.Reg)
             this.set('displayedFlightList', filteredFlightList);
             // let flightList = this.get('flightList');
-            
-        },
-
-        loadFilteredAircraftPositions () {
 
         },
 
-        loadAircraftPositions() {    
+        loadFilteredAircraftPositions() {
+
+        },
+
+        loadAircraftPositions() {
             // console.log(`it is : ${this.get('aircraftRegFilters')}`);            
             // console.log(`it is :`);            
-            
+
             this.get('aircraftService').getAllAircraftPositions().then((json) => {
                 // this.set(`aircraftPosition`, json);
 
 
-                    // `this.get('aircraftRegFilters').forEach(function(aircraftReg, i) {
-                    //     // if (aircraft.Reg === aircraftReg) {
-                    //         // this.get('aircraftRegFilters')[i].values.push(aircraft);
-                    //         console.log(JSON.stringify(aircraftReg));
-                    //         // aircraftReg.values.push(aircraft);
-                    //         console.log(JSON.stringify(aircraftReg));
-                            
-                    //     // }
-                    // })`
+                // `this.get('aircraftRegFilters').forEach(function(aircraftReg, i) {
+                //     // if (aircraft.Reg === aircraftReg) {
+                //         // this.get('aircraftRegFilters')[i].values.push(aircraft);
+                //         console.log(JSON.stringify(aircraftReg));
+                //         // aircraftReg.values.push(aircraft);
+                //         console.log(JSON.stringify(aircraftReg));
+
+                //     // }
+                // })`
 
                 // someValues.forEach((element, index) => {
                 //     console.log(`Current index: ${index}`);
@@ -476,18 +538,18 @@ export default Controller.extend({
 
 
                     this.get('aircraftRegFilters').forEach((aircraftReg, i) => {
-                    // this.get('aircraftRegFilters').forEach(function(aircraftReg, i) {
+                        // this.get('aircraftRegFilters').forEach(function(aircraftReg, i) {
                         console.log(`howdy hau`);
                         if (aircraft.Reg === aircraftReg.Reg) {
                             // this.get('aircraftRegFilters')[i].values.push(aircraft);
                             // console.log(JSON.stringify(aircraftReg));
                             aircraftReg.values.push(aircraft);
                             // console.log(JSON.stringify(aircraftReg));
-                            
+
                         }
-                        
+
                     })
-                    
+
 
                     // this.set(`aircraftPosition`, json);
                     this.set(`aircraftRegFilters`, this.get('aircraftRegFilters'));
@@ -503,14 +565,14 @@ export default Controller.extend({
                 // this.get('aircraftRegFilters').forEach(function(Reg,i){
                 //     console.log(`hihih ${Reg} + ${i}`);
                 // })
-                
-            });              
+
+            });
         },
-        loadFlights() {                
+        loadFlights() {
             this.get('flightService').getFlights().then((json) => {
                 this.set(`fullFlightList`, json);
                 this.set(`displayedFlightList`, json);
-            });              
+            });
         }
 
     }
